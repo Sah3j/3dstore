@@ -81,7 +81,7 @@ export default function Home() {
           <motion.div 
             key="loading"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: {duration: 0.5, delay:0.2} }}
+            exit={{ opacity: 0, transition: {duration: 0.5} }}
             className="fixed top-0 left-0 flex min-h-screen bg-black w-screen justify-center items-center z-1">
             <p>Loading...</p>
           </motion.div>
@@ -92,7 +92,7 @@ export default function Home() {
           onMouseDown={(e) => onMouseDown(e)} onLoad={onLoad}/>
       </div>
       {!loading && 
-        <motion.div initial={{opacity: 0}} animate={{opacity:1}} transition={{delay:2.5}} className="fixed top-8 right-8 z-0">
+        <motion.div initial={{opacity: 0}} animate={{opacity:1}} transition={{}} className="fixed top-8 right-8 z-0">
           <Cart cartContent={cartContent} setCartContent={setCartContent}/>
         </motion.div>
       }
