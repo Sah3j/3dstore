@@ -88,7 +88,7 @@ export default function Home() {
                 <div className="w-96">
                   <Lottie animationData={animationData} loop={true}/>
                 </div> 
-                <p className="text-lg font-bold">LOADING SHOP</p>
+                <p className="text-lg font-bold">LOADING SHOP...</p>
           </motion.div>
         }
       </AnimatePresence>
