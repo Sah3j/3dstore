@@ -5,6 +5,8 @@ import { useState, useRef } from 'react'
 import ProductsCard from "@/components/ProductsCard";
 import Cart from "@/components/Cart";
 import {motion, AnimatePresence} from 'framer-motion'
+import Lottie from 'lottie-react';
+import animationData from '../assets/loadingAnimation.json'
 
 interface TshirtScene {
   scene: string,
@@ -82,8 +84,11 @@ export default function Home() {
             key="loading"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: {duration: 0.5} }}
-            className="fixed top-0 left-0 flex min-h-screen bg-black w-screen justify-center items-center z-1">
-            <p>Loading...</p>
+            className="fixed top-0 left-0 flex flex-col min-h-screen bg-black w-screen justify-center items-center z-1">
+                <div className="w-96">
+                  <Lottie animationData={animationData} loop={true}/>
+                </div> 
+                <p className="text-lg font-bold">LOADING SHOP</p>
           </motion.div>
         }
       </AnimatePresence>
