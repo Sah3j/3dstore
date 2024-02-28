@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState, useRef, MutableRefObject} from 'react'
 import { ShoppingBasket, X, Smile } from 'lucide-react';
 import Spline from "@splinetool/react-spline";
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import Lottie from 'lottie-react';
 import animationData from '../assets/checkAnimation.json'
 
@@ -27,6 +27,7 @@ const Cart:FC<ProductsCardProps> = ({cartContent, setCartContent}) => {
 
   function onLoad(index: number, splineApp: any) {
     spline.current = splineApp;
+    updateCanvasStyles();
 
     setTimeout(() => {
       if(spline.current){
@@ -34,6 +35,7 @@ const Cart:FC<ProductsCardProps> = ({cartContent, setCartContent}) => {
       }
     }, 100)
   }
+
 
   function updateCanvasStyles() {
     const divElements = document.querySelectorAll(".myComponentId");
@@ -50,10 +52,6 @@ const Cart:FC<ProductsCardProps> = ({cartContent, setCartContent}) => {
     const updatedCart = [...cartContent];
     updatedCart.splice(index, 1);
     setCartContent(updatedCart);
-
-    setTimeout(() => {
-      updateCanvasStyles();
-    }, 100);
   }
 
   function handleCheckout() {
@@ -82,13 +80,13 @@ const Cart:FC<ProductsCardProps> = ({cartContent, setCartContent}) => {
       </div>
       <div className='max-h-96 overflow-y-auto no-scrollbar'>
         {cartContent?.map((item, index) => (
-          <motion.div 
-          initial={{ opacity: 0,  scale: 0.5}}
-          animate={{ opacity: 1, scale: 1 }}
+          <motion.div
+          initial={{ opacity: 0}}
+          animate={{ opacity: 1}}
           transition={{
             duration: 0.5,
             delay: 1.5,
-          }} key={index} className='border-b hover:bg-neutral-200 rounded-xl pr-2 relative'>
+          }} key={index} className={`border-b hover:bg-neutral-200 rounded-xl pr-2 relative`}>
             <button onClick={() => removeFromCart(index)}
               className='text-neutral-400 hover:text-red-800 text-xs absolute top-1 right-1'>
               <X size={16}/>
